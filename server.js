@@ -62,6 +62,6 @@ app.get('/acessorios', (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
+app.listen(port, '192.168.15.9', () => {
+  console.log(`Servidor rodando em http://192.168.15.9:${port}`);
 });
