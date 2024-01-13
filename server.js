@@ -3,13 +3,14 @@ const mysql = require('mysql2');
 const cors = require('cors');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
+// Configuração para o serviço MySQL na AWS RDS
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'acesso123',
-  database: 'ecomerce'
+  host: '0.0.0.0', // Isso pode não ser apropriado para o host do banco de dados em nuvem
+  user: 'seu-usuario',
+  password: 'sua-senha',
+  database: 'seu-banco-de-dados',
 });
 
 connection.connect((err) => {
@@ -49,19 +50,6 @@ app.get('/consoles', (req, res) => {
   });
 });
 
-app.get('/acessorios', (req, res) => {
-  const query = 'SELECT * FROM ascesorios';
-
-  connection.query(query, (err, results) => {
-    if (err) {
-      console.error('Erro ao executar a query de acessorios:', err);
-      res.status(500).json({ error: 'Erro interno do servidor' });
-    } else {
-      res.json(results);
-    }
-  });
-});
-
-app.listen(port, '192.168.15.9', () => {
-  console.log(`Servidor rodando em http://192.168.15.9:${port}`);
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Servidor rodando na porta ${port}`);
 });
