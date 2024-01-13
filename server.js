@@ -7,10 +7,12 @@ const port = process.env.PORT || 3000;
 
 // Configuração para o serviço MySQL na AWS RDS
 const connection = mysql.createConnection({
-  host: '0.0.0.0', // Isso pode não ser apropriado para o host do banco de dados em nuvem
-  user: 'seu-usuario',
-  password: 'sua-senha',
-  database: 'seu-banco-de-dados',
+  host: 'monorail.proxy.rlwy.net', // Isso pode não ser apropriado para o host do banco de dados em nuvem
+  user: 'root',
+  password: 'DaAHccCfDC-BhaF3BEg363aBHe1h4dg-',
+  database: 'ecomerce',
+  port: 17931,
+  connectTimeout: 60000,
 });
 
 connection.connect((err) => {
